@@ -1,7 +1,30 @@
 import { PaperProvider,Text ,Divider,Button,TextInput} from "react-native-paper";
-import {  ScrollView, View, StyleSheet,Image } from "react-native";
+import {  ScrollView, View, StyleSheet,Image,Alert } from "react-native";
+import { useState } from "react";
+import { students } from "./StudentDb";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Login(){
+    const [username,setUsername]=useState('');
+    const [password,setPassword]=useState('');
+    //const navigation=useNavigation();
+
+    const handleLogin=()=>{
+        const user=students.find(
+            (student)=>student.username=== username && student.password===password
+        );
+
+        // if(user){
+        //     navigation.navigate('Profile',{user});
+
+        // }else{
+        //     Alert.alert('Invalid Credentials','Please try Again ')
+        // }
+
+
+    };
+
+
     return(
         <PaperProvider>
           <ScrollView contentContainerStyle={styles.scrollView}>
@@ -20,15 +43,15 @@ export default function Login(){
                 </View>
 
                 <View style={styles.input}>
-                    <TextInput label="username" mode="outlined" style={styles.inputText}/>
+                    <TextInput label="username" mode="outlined" style={styles.inputText} value={username} onChange={(text)=>setUsername(text)}/>
 
                 </View>
                 <View style={styles.input}>
-                    <TextInput label="password" mode="outlined" style={styles.inputText}/>
+                    <TextInput label="password" mode="outlined" style={styles.inputText} value={password} onChange={(text)=>setPassword(text)}/>
                 </View>
 
                 <View style={styles.input}>
-                     <Button mode='contained'  style={styles.button}>
+                     <Button mode='contained'  style={styles.button} onPress={handleLogin}>
                      <Text style={styles.buttonText}>Login</Text></Button>
                 </View>
 

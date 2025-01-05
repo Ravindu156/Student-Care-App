@@ -1,13 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Login from './components/Login';
+import Profile from './components/Profile';
 import { PaperProvider } from 'react-native-paper';
-
+import { NavigationContainer } from '@react-navigation/native';
+import {createSta}
 export default function App() {
   return (
    <PaperProvider>
       <ScrollView>
-           <Login/>
+        <Login/>
       </ScrollView>
 
 
