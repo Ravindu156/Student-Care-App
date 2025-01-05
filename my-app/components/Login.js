@@ -1,5 +1,5 @@
-import { PaperProvider ,Text} from "react-native-paper";
-
+import { PaperProvider} from "react-native-paper";
+import { Text } from "react-native";
 export default function Login(){
     return(
         <PaperProvider>
@@ -35,11 +35,4 @@ export default function Login(){
 
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
