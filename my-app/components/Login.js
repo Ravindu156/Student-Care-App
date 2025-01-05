@@ -1,13 +1,21 @@
 import { PaperProvider} from "react-native-paper";
-import { Text } from "react-native";
+import { Text ,ScrollView,View} from "react-native";
 export default function Login(){
     return(
         <PaperProvider>
-            <Text>
-                Hi
+          <ScrollView contentContainerStyle={styles.scrollView}>
+                <View style={styles.container}>
+                    <Text>
+                        HIIII
+                    </Text>
 
 
-            </Text>
+                </View>
+
+
+
+
+          </ScrollView>
 
 
 
@@ -35,4 +43,10 @@ export default function Login(){
 
 }
 
+const styles=StyleSheet.create({
+    scrollView: {
+        flexGrow: 1, // Ensures the ScrollView behaves correctly
+    },
 
+
+})
