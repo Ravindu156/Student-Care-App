@@ -4,17 +4,18 @@ import Login from './components/Login';
 import Profile from './components/Profile';
 import { PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
-import {createSta}
+import {createStackNavigator} from '@react-navigation/stack';
+
+const Stack=createStackNavigator();
+
 export default function App() {
   return (
-   <PaperProvider>
-      <ScrollView>
-        <Login/>
-      </ScrollView>
-
-
-
-   </PaperProvider>
+   <NavigationContainer>
+    <Stack.Navigator initialRouteName="Login">
+      <Stack.Screen name="Login" component={Login}/>
+      <Stack.Screen name="Profile" component={Profile}/>
+    </Stack.Navigator>
+   </NavigationContainer>
    
     
   );
