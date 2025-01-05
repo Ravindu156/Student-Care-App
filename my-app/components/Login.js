@@ -53,7 +53,7 @@ export default function Login(){
 
                 </View>
                 <View style={styles.input}>
-                    <TextInput label="password" mode="outlined" style={styles.inputText} value={password} onChangeText={(text)=>setPassword(text)}/>
+                    <TextInput label="password" mode="outlined" style={styles.inputText} value={password} onChangeText={(text)=>setPassword(text)} secureTextEntry/>
                 </View>
 
                 <View style={styles.input}>
