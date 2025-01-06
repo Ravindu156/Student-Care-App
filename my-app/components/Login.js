@@ -1,8 +1,9 @@
-import { PaperProvider,Text ,Divider,Button,TextInput,Alert} from "react-native-paper";
+import { PaperProvider,Text ,Divider,Button,TextInput} from "react-native-paper";
 import {  ScrollView, View, StyleSheet,Image } from "react-native";
 import { useState } from "react";
 import { students } from "./StudentDb.js"
 import { useNavigation } from "@react-navigation/native";
+import MyTabs from "./MyTabs.js";
 
 export default function Login(){
     const [username,setUsername]=useState('');
@@ -15,10 +16,10 @@ export default function Login(){
         );
 
         if(user){
-            navigation.navigate('Profile',{user});
+            navigation.navigate('MyTabs',{user});
 
         }else{
-            Alert.alert('Invalid Credentials','Please try Again ')
+            alert('Invalid Credentials','Please try Again ')
         }
 
 
@@ -60,27 +61,9 @@ export default function Login(){
                      <Button mode='contained'  style={styles.button} onPress={handleLogin}>
                      <Text style={styles.buttonText}>Login</Text></Button>
                 </View>
-
-
-
-
                 </View>
-
-
-
-
           </ScrollView>
-
-
-
-
-
         </PaperProvider>
-
-
-
-
-
     );
 
 

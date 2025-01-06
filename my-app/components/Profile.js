@@ -1,14 +1,13 @@
-import { PaperProvider, Text } from "react-native-paper";
-import { ScrollView, View, StyleSheet, Image, Button } from "react-native";
+import { Button, PaperProvider, Text} from "react-native-paper";
+import { ScrollView, View, StyleSheet, Image} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { courses } from "./StudentDb";
+import MyTabs from "./MyTabs";
 
 export default function Profile({ route }) {
   const { user } = route.params;
   const navigation = useNavigation();
-
-  const userCourseId = user.course_id; // Get the logged-in user's course ID
-
+  
   return (
     <PaperProvider>
       <ScrollView contentContainerStyle={styles.scrollView}>
@@ -30,12 +29,10 @@ export default function Profile({ route }) {
             <Text style={styles.text}>Blood Group: {user.blood_group}</Text>
             <Text style={styles.text}>Address: {user.address}</Text>
           </View>
-          <View style={styles.button}>
-            <Button
-              title="View Course"
-              onPress={() => navigation.navigate("Course", { course_id: userCourseId, courses })}
-            />
-          </View>
+
+           <View style={styles.footer}>
+                            <Text style={styles.footerText}>UOV © 2024</Text>
+            </View>
         </View>
       </ScrollView>
     </PaperProvider>
@@ -62,4 +59,14 @@ const styles = StyleSheet.create({
   text: { color: "black" },
   whole: { alignItems: "center" },
   button: { marginTop: 20, width: "50%" },
+  footer: {
+    backgroundColor: "#500073",
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  footerText: {
+    color: "#fff",
+    fontSize: 14,
+  },
 });

@@ -1,10 +1,12 @@
-import { PaperProvider, Text } from "react-native-paper";
+import { PaperProvider, Text, Button } from "react-native-paper";
 import { ScrollView, View, StyleSheet, Image } from "react-native";
+import {courses} from "./StudentDb";
 
-export default function Course({ route }) {
-  const { course_id, courses } = route.params;
 
-  const selectedCourse = courses.find((course) => course.course_code === course_id);
+export default function Course({ route,navigation }) {
+  const { user } = route.params;
+
+  const selectedCourse = courses.find(course => user.course_id === course.id);
 
   return (
     <PaperProvider>
@@ -28,6 +30,11 @@ export default function Course({ route }) {
           ) : (
             <Text style={styles.noCoursesText}>No Course Found</Text>
           )}
+
+           <View style={styles.footer}>
+                          <Text style={styles.footerText}>UOV © 2024</Text>
+          </View>
+          
         </View>
       </ScrollView>
     </PaperProvider>
@@ -35,6 +42,16 @@ export default function Course({ route }) {
 }
 
 const styles = StyleSheet.create({
+  footer: {
+    backgroundColor: "#500073",
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  footerText: {
+    color: "#fff",
+    fontSize: 14,
+  },
   scrollView: { flexGrow: 1 },
   container: { flexDirection: "column", backgroundColor: "#fff", padding: 0 },
   header: {
@@ -79,4 +96,5 @@ const styles = StyleSheet.create({
     color: "#888",
     marginTop: 20,
   },
+
 });

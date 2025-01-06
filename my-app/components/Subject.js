@@ -1,11 +1,36 @@
 import { PaperProvider, Text } from "react-native-paper";
 import { ScrollView, View, StyleSheet, Image, Button } from "react-native";
+import { courses, marks, subjects } from "./StudentDb";
 
 
 export default function Subject({ route }) {
-    const {subjects} =route.params;
+    const {user} =route.params;
+    
+    const course_id = user.course_id;
+    
+    const course = courses.find((course) => course_id === course.id)
+    console.log(course.name);
 
-    const average=subjects.reduce ((sum,subject)=>sum+subject.mark,0)/subjects.length;
+    const subs = subjects.filter((subject) => subject.course_id === course.id)
+    const len = subs.length;
+    console.log(subs);
+    
+    let sum = 0;
+    let subMarks = [];
+    for (let i = 0; i<len; i++) {
+        let subject = subs[i];  
+        const mark = marks.find((mark) => mark.subject_id === subject.id && mark.student_id === user.id);
+        sum+=mark.marks  
+        
+        subMarks.push({name: subject.name, marks: mark.marks});
+    }
+    const average = (sum/len).toFixed(2);
+    console.log(subMarks);
+    
+    
+
+
+   // const average=user.reduce((sum,subject)=>sum+subject.mark,0)/subjects.length;
 
 
   return (
@@ -19,9 +44,10 @@ export default function Subject({ route }) {
             <Image source={require("../assets/uovlogo.png")} style={styles.image} />
           </View>
           <View style={styles.card}>
-                <Text style={styles.title}>Computer Science</Text>
+                <Text style={styles.title}>{course.name}</Text>
+    
                <Text style={styles.subtitle}>
-                    {subjects.length} | Average {Math.round(average)}
+                    {len} Subjects | Average: {average}
                </Text>
 
             <Text style={styles.sectionTitle}>Marks Information</Text>
@@ -34,11 +60,11 @@ export default function Subject({ route }) {
                        Marks
                     </Text>
                 </View>
-                {
-                    subjects.map((subject,index)=>(
+               {
+                    subMarks.map((subject,index)=>(
                         <View style={styles.tableRow} key={index}>
                            <Text style={styles.tableCell}>{subject.name}</Text>
-                           <Text style={styles.tableCell}>{subject.mark}</Text>
+                           <Text style={styles.tableCell}>{subject.marks}</Text>
                         </View>
                     ))
 
@@ -74,11 +100,10 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
     },
     imagepad: {
-      padding: 8,
       alignItems: "center",
       marginBottom: 10,
     },
-    image: { width: 120, height: 120 },
+    image: { width: "70%", height: 100, resizeMode: 'contain' },
     card: {
       backgroundColor: "#f9f9f9",
       padding: 20,
@@ -140,5 +165,9 @@ const styles = StyleSheet.create({
       color: "#fff",
       fontSize: 14,
     },
+    button: { marginTop: 20, width: "50%" },
+    count: {
+        color: 'black',
+    }
   });
   
